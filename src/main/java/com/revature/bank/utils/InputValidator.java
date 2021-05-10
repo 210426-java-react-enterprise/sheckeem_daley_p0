@@ -1,4 +1,4 @@
-package com.revature.bank;
+package com.revature.bank.utils;
 
 public class InputValidator {
     private String input;
