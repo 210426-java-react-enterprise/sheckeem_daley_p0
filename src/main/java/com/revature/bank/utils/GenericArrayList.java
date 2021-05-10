@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class GenericArrayList<I> {
     private int size = 0;
     private int defaultSize = 10;
-    private I[] items;
+    private I[] items = null;
 
     public GenericArrayList(int size){
         this.size = size;
@@ -29,7 +29,8 @@ public class GenericArrayList<I> {
             I[] resizedArray = Arrays.copyOf(items, (defaultSize += size));
             items = resizedArray;
         } else if (size == 0) {
-            I[] resizedArray = Arrays.copyOf(items,1);
+            Array.set(items,0,item);
+            I[] resizedArray = Arrays.copyOf(items, 1);
             items = resizedArray;
             items[size] = item;
         } else {

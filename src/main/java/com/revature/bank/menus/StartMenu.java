@@ -17,10 +17,10 @@ public class StartMenu extends Menu {
 
         switch (input = MainActivity.scan.nextLine().toUpperCase().charAt(0)) {
             case 'A':
-                ScreenRouter.navigate("/register");
+                ScreenRouter.getInstance().navigate("/register");
                 break;
             case 'B':
-                ScreenRouter.navigate("/login");
+                ScreenRouter.getInstance().navigate("/login");
                 break;
             case 'X':
                 return false;

@@ -1,7 +1,6 @@
 package com.revature.bank;
 
 import com.revature.bank.menus.ScreenRouter;
-import com.revature.bank.menus.StartMenu;
 
 import java.util.Scanner;
 
@@ -13,10 +12,9 @@ public class MainActivity {
 
 
     public static void main(String[] args) {
-
         while(isActive == true) {
-            ScreenRouter.addAllScreens();
-            isActive = ScreenRouter.navigate("/start");
+            ScreenRouter.getInstance().addAllScreens();
+            isActive = ScreenRouter.getInstance().navigate("/start");
         }
 
         scan.close();

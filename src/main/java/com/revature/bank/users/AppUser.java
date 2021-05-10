@@ -1,4 +1,4 @@
-package com.revature.bank;
+package com.revature.bank.users;
 
 import com.revature.bank.utils.ConnectionFactory;
 import java.sql.Connection;
@@ -7,12 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AppUser {
+    private boolean clientActive;
+    private char sex;
     private int id;
+    private int ssn;
+    private String clientSince;
     private String username;
     private String password; //No getter for password is intentional
     private String email;
     private String firstName;
     private String lastName;
+    private String phone;
 
     public AppUser() {}
 
@@ -59,32 +64,20 @@ public class AppUser {
         this.email = email;
     }
 
+    public void setClientActive(boolean clientActive) {
+        this.clientActive = clientActive;
+    }
 
-    private class UserDao extends AppUser {
-        public AppUser findUser(String username, String password) {
-            AppUser user = new AppUser();
+    public void setClientSince(String clientSince) {
+        this.clientSince = clientSince;
+    }
 
-            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-                String sql = "select * from p0.clients where username = ? and password = ?";
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, username);
-                pstmt.setString(2, password);
+    public void setSex(String sex) {
+        this.sex = sex.toCharArray()[0];
+    }
 
-                ResultSet rs = pstmt.executeQuery();
-                while (rs.next()) {
-                    user.setId(rs.getInt("id"));
-                    user.setUsername(rs.getString("username"));
-                    user.setPassword(rs.getString("password"));
-                    user.setFirstName(rs.getString("first_name"));
-                    user.setLastName(rs.getString("last_name"));
-                    user.setEmail(rs.getString("email"));
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            return user;
-        }
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
+

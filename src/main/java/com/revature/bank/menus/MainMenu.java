@@ -20,30 +20,30 @@ public class MainMenu extends Menu {
         {
             case 'A':
                 System.out.println("Case A: View Accounts");
-                ScreenRouter.navigate("/accounts");
+                ScreenRouter.getInstance().navigate("/accounts");
                 break;
             case 'B':
                 System.out.println("Case B: Make a Deposit");
-                ScreenRouter.navigate("/deposit");
+                ScreenRouter.getInstance().navigate("/deposit");
                 break;
             case 'C':
                 System.out.println("Case C: Make a Withdrawal");
-                ScreenRouter.navigate("/withdraw");
+                ScreenRouter.getInstance().navigate("/withdraw");
                 break;
             case 'D':
                 System.out.println("Case D: Make a Transfer");
-                ScreenRouter.navigate("/transfer");
+                ScreenRouter.getInstance().navigate("/transfer");
                 break;
             case 'E':
                 System.out.println("Case E: View Transaction History");
-                ScreenRouter.navigate("/transactions");
+                ScreenRouter.getInstance().navigate("/transactions");
                 break;
             case 'X':
                 System.out.println("Case X: Logged Out");
                 return false; //breaks loop, ends program (while loop in main())
             default:
                 System.out.println("Case Default"); //refreshes current menu
-                ScreenRouter.navigate("/menu");
+                ScreenRouter.getInstance().navigate("/menu");
         }
         return true;
     }
