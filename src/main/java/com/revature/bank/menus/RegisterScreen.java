@@ -6,7 +6,6 @@ public class RegisterScreen extends Menu {
     @Override
     public boolean display() {
         System.out.println(logo + "New User Registration: \n\n");
-
         return true;
     }
 

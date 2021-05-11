@@ -3,7 +3,7 @@ package com.revature.bank.menus;
 import com.revature.bank.utils.GenericArrayList;
 
 public class ScreenRouter {
-    private GenericArrayList<Menu> screens = new GenericArrayList<Menu>();
+    private GenericArrayList<Menu> screens = new GenericArrayList<Menu>(1);
     private static ScreenRouter screenRouter;
 
     /*
@@ -58,7 +58,7 @@ public class ScreenRouter {
     public boolean navigate(String route) {
         boolean isActive = true;
 
-        for (int i = 0; i < screens.getSize(); i++) {
+        for (int i = 0; i < screens.getSize()-1; i++) {
             Menu currentScreen = (Menu) screens.get(i);
             if (currentScreen.getRoute().equals(route)) {
                 isActive = currentScreen.display();

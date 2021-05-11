@@ -10,12 +10,13 @@ public class GenericArrayList<I> {
 
     public GenericArrayList(int size){
         this.size = size;
+        items = (I[])new Object[size];
         //this.items = new I[size]);
     }
 
     public GenericArrayList(Class<I> items, int size){
         this.size = size;
-        this.items = (I[]) Array.newInstance(items, size);
+        this.items = (I[])new Object[size];
     }
 
     public GenericArrayList() {}
@@ -34,9 +35,11 @@ public class GenericArrayList<I> {
             items = resizedArray;
             items[size] = item;
         } else {
+            I[] resizedArray = Arrays.copyOf(items, size);
+            items = resizedArray;
             items[size-1] = item;
         }
-        ++size;
+        size++;
     }
 
     public void add(I item, int index) { //inserts at index
