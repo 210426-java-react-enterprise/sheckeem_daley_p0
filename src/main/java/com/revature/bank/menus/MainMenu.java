@@ -1,19 +1,19 @@
 package com.revature.bank.menus;
 
 import com.revature.bank.MainActivity;
+import com.revature.bank.users.UserDao;
 
 public class MainMenu extends Menu {
     String route = "/main";
 
     public boolean display() {
-        System.out.print("\n" + logo + "MAIN MENU " +
+        System.out.print("\n" + logo + "MAIN MENU \n" +
                 "A. View Accounts\n" +
                 "B. Make a Deposit\n" +
                 "C. Make a Withdrawal\n" +
                 "D. Make a Transfer\n" +
                 "E. View Transaction History\n" +
-                "X. Log Out\n" +
-                "\n\n" +
+                "X. Log Out\n\n" +
                 "Please Select an Option: ");
 
         switch (input = MainActivity.scan.nextLine().toUpperCase().charAt(0))
@@ -39,11 +39,11 @@ public class MainMenu extends Menu {
                 ScreenRouter.getInstance().navigate("/transactions");
                 break;
             case 'X':
-                System.out.println("Case X: Logged Out");
-                return false; //breaks loop, ends program (while loop in main())
             default:
-                System.out.println("Case Default"); //refreshes current menu
-                ScreenRouter.getInstance().navigate("/menu");
+                System.out.println("Case X or Default: Logging Out");
+                MainActivity.setAppRunning(false);
+                UserDao.getInstance().clearCredentials();
+                return false;
         }
         return true;
     }

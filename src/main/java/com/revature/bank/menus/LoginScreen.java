@@ -14,7 +14,6 @@ public class LoginScreen extends Menu {
     @Override
     public boolean display() {
         AppUser user = new AppUser();
-        UserDao userDao = new UserDao();
         while (correct == false) {
             System.out.println("\n" + logo + "Log In to Your Account: ");
             System.out.print("Please enter your username: ");
@@ -22,10 +21,11 @@ public class LoginScreen extends Menu {
             System.out.print("Please enter your password: ");
             password = MainActivity.scan.nextLine();
 
-            user = userDao.findUser(username,password);
+            user = UserDao.getInstance().findUser(username,password);
             if (user != null) {
                 correct = true;
                 System.out.println("Login successful!\n");
+                ScreenRouter.getInstance().navigate("/main");
             } else {
                 System.out.println("LOGIN FAILED!\n");
                 correct = false;

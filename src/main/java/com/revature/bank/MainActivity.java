@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class MainActivity {
 
 
-    static boolean isActive = true;
+    private static boolean state = true;
     public static Scanner scan = new Scanner(System.in);
 
 
@@ -16,14 +16,18 @@ public class MainActivity {
         Routing options:
         /start  /register   /login  /main   /withdraw   /deposit    /transfer   /accounts   /transactions
          */
-         {
+         while (state == true) {
             ScreenRouter.getInstance().addAllScreens();
-            isActive = ScreenRouter.getInstance().navigate("/start");
-            if (isActive == true) {
-                isActive = ScreenRouter.getInstance().navigate("/main");
-            } else isActive = false;
+            state = ScreenRouter.getInstance().navigate("/start");
         };
 
         scan.close();
+    }
+
+    public static boolean isAppRunning() {
+        return state;
+    }
+    public static void setAppRunning(boolean state) {
+        MainActivity.state = state;
     }
 }

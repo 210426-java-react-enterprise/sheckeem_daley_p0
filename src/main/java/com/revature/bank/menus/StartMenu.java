@@ -1,6 +1,7 @@
 package com.revature.bank.menus;
 
 import com.revature.bank.MainActivity;
+import com.revature.bank.users.UserDao;
 
 public class StartMenu extends Menu {
     String route = "/start";
@@ -11,13 +12,12 @@ public class StartMenu extends Menu {
         System.out.print("\n" + logo + "What would you like to do today?\n" +
                 "A. Register a New User\n" +
                 "B. Login to an Existing User\n" +
-                "X. Exit Application\n" +
-                "\n\n" +
+                "X. Exit Application\n\n" +
                 "Please Select an Option: ");
         String tempInput;
         do {
-            tempInput = MainActivity.scan.next();
-        } while (tempInput == null || tempInput.trim() == null);
+            tempInput = MainActivity.scan.nextLine();
+        } while (tempInput == null || tempInput.trim() == null || tempInput.isEmpty());
 
         input = tempInput.toUpperCase().charAt(0);
 
@@ -26,16 +26,13 @@ public class StartMenu extends Menu {
                 ScreenRouter.getInstance().navigate("/register");
                 break;
             case 'B':
-                if (ScreenRouter.getInstance().navigate("/login")){
-                    ScreenRouter.getInstance().navigate("/main");
-                    return true;
-                }
+                ScreenRouter.getInstance().navigate("/login");
                 break;
             case 'X':
-                System.out.println("Logging out!");
-                return false;
             default:
-                System.out.println("Invalid entry, logging out!");
+                System.out.println("Logging out!");
+                MainActivity.setAppRunning(false);
+                UserDao.getInstance().clearCredentials();
                 return false;
         }
         return true;

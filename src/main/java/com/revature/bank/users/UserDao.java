@@ -74,4 +74,10 @@ public class UserDao {
         if (userDao == null) userDao = new UserDao();
         return userDao;
     }
+
+    public void clearCredentials() {
+        user = null;
+        correctLogin = false;
+        userDao = null;
+    }
 }

@@ -9,12 +9,13 @@ import java.time.LocalDate;
 
 public class RegisterScreen extends Menu {
     String route = "/register";
+    AppUser user;
 
     @Override
     public boolean display() {
-        AppUser user = new AppUser();
+        UserDao.getInstance().clearCredentials();
+        user = new AppUser();
         System.out.println("\n" + logo + "New User Registration: ");
-
         System.out.print("Username: \t");
         user.setUsername(MainActivity.scan.nextLine());
         System.out.print("Password: \t");
