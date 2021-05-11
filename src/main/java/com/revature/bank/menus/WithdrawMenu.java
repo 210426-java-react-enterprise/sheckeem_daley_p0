@@ -5,7 +5,7 @@ public class WithdrawMenu extends Menu {
 
     @Override
     public boolean display() {
-        System.out.println(logo+ "Withdraw: \n");return true;
+        System.out.println("\n" + logo+ "Withdrawal Menu: ");return true;
     }
 
     @Override

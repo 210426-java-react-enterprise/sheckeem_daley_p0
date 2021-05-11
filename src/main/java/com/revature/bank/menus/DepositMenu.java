@@ -5,7 +5,7 @@ public class DepositMenu extends Menu {
 
     @Override
     public boolean display() {
-        System.out.println(logo + "Deposit Menu: \n\n");
+        System.out.println("\n" + logo + "Deposit Menu: ");
         return true;
     }
 

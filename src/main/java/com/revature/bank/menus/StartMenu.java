@@ -8,7 +8,7 @@ public class StartMenu extends Menu {
     @Override
     public boolean display() {
 
-        System.out.print("\n\n" + logo + "What would you like to do today?\n" +
+        System.out.print("\n" + logo + "What would you like to do today?" +
                 "A. Register a New User\n" +
                 "B. Login to an Existing User\n" +
                 "X. Exit Application\n" +

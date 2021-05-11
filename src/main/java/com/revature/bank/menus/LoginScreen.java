@@ -16,7 +16,7 @@ public class LoginScreen extends Menu {
         AppUser user = new AppUser();
         UserDao userDao = new UserDao();
         while (correct == false) {
-            System.out.println("\n\n" + logo + "\nLog In to Your Account: ");
+            System.out.println("\n" + logo + "Log In to Your Account: ");
             System.out.print("Please enter your username: ");
             username = MainActivity.scan.nextLine();
             System.out.print("Please enter your password: ");

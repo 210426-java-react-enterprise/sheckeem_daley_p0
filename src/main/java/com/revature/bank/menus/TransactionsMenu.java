@@ -5,6 +5,7 @@ public class TransactionsMenu extends Menu {
 
     @Override
     protected boolean display() {
+        System.out.println("\n" + logo + "Transactions Menu: ");
         return true;
     }
 

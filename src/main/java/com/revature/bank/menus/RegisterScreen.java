@@ -13,7 +13,7 @@ public class RegisterScreen extends Menu {
     @Override
     public boolean display() {
         AppUser user = new AppUser();
-        System.out.println("\n\n" + logo + "\nNew User Registration: ");
+        System.out.println("\n" + logo + "New User Registration: ");
 
         System.out.print("Username: \t");
         user.setUsername(MainActivity.scan.nextLine());

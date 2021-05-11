@@ -5,7 +5,7 @@ public class TransferMenu extends Menu {
 
     @Override
     public boolean display() {
-        System.out.println(logo + "Transfer Money: \n");
+        System.out.println("\n" + logo + "Transfer Money: ");
 
         return true;
     }

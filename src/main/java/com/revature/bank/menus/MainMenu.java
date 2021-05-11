@@ -6,7 +6,7 @@ public class MainMenu extends Menu {
     String route = "/main";
 
     public boolean display() {
-        System.out.print(logo + "What would you like to do today?\n" +
+        System.out.print("\n" + logo + "MAIN MENU " +
                 "A. View Accounts\n" +
                 "B. Make a Deposit\n" +
                 "C. Make a Withdrawal\n" +

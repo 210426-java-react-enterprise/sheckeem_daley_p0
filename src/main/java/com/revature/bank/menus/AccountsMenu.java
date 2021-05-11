@@ -5,8 +5,10 @@ public class AccountsMenu extends Menu {
 
     @Override
     protected boolean display() {
+        System.out.println("\n" + logo + "Accounts Menu: ");
         return true;
     }
+
 
     @Override
     protected String getRoute() {
