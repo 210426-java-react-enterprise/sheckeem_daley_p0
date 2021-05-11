@@ -2,12 +2,11 @@ package com.revature.bank.users;
 
 import com.revature.bank.utils.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class UserDao {
+    private static UserDao userDao;
     private boolean correctLogin;
     private AppUser user;
 
@@ -40,7 +39,38 @@ public class UserDao {
         return user;
     }
 
+    public AppUser register(AppUser user) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "insert into p0.clients (username, password, ssn, " +
+                    "first_name, last_name, email, phone, sex, client_since, client_active) " +
+                    "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setInt(3, user.getSsn());
+            pstmt.setString(4, user.getFirstName());
+            pstmt.setString(5, user.getLastName());
+            pstmt.setString(6, user.getEmail());
+            pstmt.setString(7, user.getPhone());
+            pstmt.setString(8, user.getSex());
+            pstmt.setDate(9, Date.valueOf(LocalDate.now()));
+            pstmt.setBoolean(10, user.isClientActive());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.user = user;
+        return this.user;
+    }
+
     public boolean getCorrectLogin() {
         return correctLogin;
+    }
+
+    public static UserDao getInstance() {
+        if (userDao == null) userDao = new UserDao();
+        return userDao;
     }
 }
