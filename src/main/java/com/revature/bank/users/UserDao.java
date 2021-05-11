@@ -8,9 +8,10 @@ import java.time.LocalDate;
 public class UserDao {
     private static UserDao userDao;
     private boolean correctLogin;
-    private AppUser user;
+    private AppUser user = null;
 
     public AppUser findUser(String username, String password) {
+
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "select * from p0.clients where username = ? and password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -19,6 +20,7 @@ public class UserDao {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
+                user = new AppUser();
                 user.setId(rs.getInt("client_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
@@ -61,8 +63,7 @@ public class UserDao {
             e.printStackTrace();
         }
 
-        this.user = user;
-        return this.user;
+        return user;
     }
 
     public boolean getCorrectLogin() {

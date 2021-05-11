@@ -27,15 +27,21 @@ public class GenericArrayList<I> {
 
     public void add(I item) { //adds to end
         if (size >= defaultSize) {
-            I[] resizedArray = Arrays.copyOf(items, (defaultSize += size));
+            //I[] resizedArray = Arrays.copyOf(items, (defaultSize += size));
+            I[] resizedArray = (I[]) new Object[items.length + 1];
+            for (int i = 0; i < items.length; i++) resizedArray[i] = items[i];
             items = resizedArray;
         } else if (size == 0) {
             Array.set(items,0,item);
-            I[] resizedArray = Arrays.copyOf(items, 1);
+            //I[] resizedArray = Arrays.copyOf(items, 1);
+            I[] resizedArray = (I[]) new Object[items.length + 1];
+            for (int i = 0; i < items.length; i++) resizedArray[i] = items[i];
             items = resizedArray;
             items[size] = item;
         } else {
-            I[] resizedArray = Arrays.copyOf(items, size);
+            //I[] resizedArray = Arrays.copyOf(items, size);
+            I[] resizedArray = (I[]) new Object[items.length + 1];
+            for (int i = 0; i < items.length; i++) resizedArray[i] = items[i];
             items = resizedArray;
             items[size-1] = item;
         }

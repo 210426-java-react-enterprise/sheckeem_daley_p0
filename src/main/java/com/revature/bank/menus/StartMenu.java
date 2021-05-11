@@ -24,6 +24,8 @@ public class StartMenu extends Menu {
                 break;
             case 'X':
                 return false;
+            default:
+                this.display();
         }
         return true;
     }
