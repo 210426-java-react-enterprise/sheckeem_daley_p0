@@ -30,7 +30,7 @@ public class UserDao {
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setSex(rs.getString("sex"));
-                user.setClientSince(rs.getString("client_since"));
+                user.setClientSince(rs.getDate("client_since"));
                 user.setClientActive(rs.getBoolean("client_active"));
             }
             correctLogin = true;

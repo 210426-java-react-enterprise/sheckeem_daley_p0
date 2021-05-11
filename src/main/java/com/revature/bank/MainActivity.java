@@ -12,10 +12,17 @@ public class MainActivity {
 
 
     public static void main(String[] args) {
-        while(isActive == true) {
+        /*
+        Routing options:
+        /start  /register   /login  /main   /withdraw   /deposit    /transfer   /accounts   /transactions
+         */
+         {
             ScreenRouter.getInstance().addAllScreens();
             isActive = ScreenRouter.getInstance().navigate("/start");
-        }
+            if (isActive == true) {
+                isActive = ScreenRouter.getInstance().navigate("/main");
+            } else isActive = false;
+        };
 
         scan.close();
     }

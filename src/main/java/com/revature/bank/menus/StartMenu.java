@@ -8,24 +8,35 @@ public class StartMenu extends Menu {
     @Override
     public boolean display() {
 
-        System.out.print(logo + "What would you like to do today?\n" +
+        System.out.print("\n\n" + logo + "What would you like to do today?\n" +
                 "A. Register a New User\n" +
                 "B. Login to an Existing User\n" +
                 "X. Exit Application\n" +
                 "\n\n" +
                 "Please Select an Option: ");
+        String tempInput;
+        do {
+            tempInput = MainActivity.scan.next();
+        } while (tempInput == null || tempInput.trim() == null);
 
-        switch (input = MainActivity.scan.nextLine().toUpperCase().charAt(0)) {
+        input = tempInput.toUpperCase().charAt(0);
+
+        switch (input) {
             case 'A':
                 ScreenRouter.getInstance().navigate("/register");
                 break;
             case 'B':
-                ScreenRouter.getInstance().navigate("/login");
+                if (ScreenRouter.getInstance().navigate("/login")){
+                    ScreenRouter.getInstance().navigate("/main");
+                    return true;
+                }
                 break;
             case 'X':
+                System.out.println("Logging out!");
                 return false;
             default:
-                this.display();
+                System.out.println("Invalid entry, logging out!");
+                return false;
         }
         return true;
     }

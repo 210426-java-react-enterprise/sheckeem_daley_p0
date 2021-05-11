@@ -1,17 +1,15 @@
 package com.revature.bank.users;
 
 import com.revature.bank.utils.ConnectionFactory;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 public class AppUser {
     private boolean clientActive;
+    private Date clientSince;
     private char sex;
     private int id;
     private int ssn;
-    private String clientSince;
     private String username;
     private String password;
     private String email;
@@ -62,7 +60,7 @@ public class AppUser {
         return "" + sex;
     }
 
-    public String getClientSince() {
+    public Date getClientSince() {
         return clientSince;
     }
 
@@ -111,7 +109,7 @@ public class AppUser {
         this.clientActive = clientActive;
     }
 
-    public void setClientSince(String clientSince) {
+    public void setClientSince(Date clientSince) {
         this.clientSince = clientSince;
     }
 }

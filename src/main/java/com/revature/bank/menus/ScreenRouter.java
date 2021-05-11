@@ -56,6 +56,10 @@ public class ScreenRouter {
      */
 
     public boolean navigate(String route) {
+        /*
+        Routing options:
+        /start  /register   /login  /main   /withdraw   /deposit    /transfer   /accounts   /transactions
+         */
         boolean isActive = true;
 
         for (int i = 0; i < screens.getSize()-1; i++) {

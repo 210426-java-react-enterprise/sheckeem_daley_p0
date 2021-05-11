@@ -4,6 +4,7 @@ import com.revature.bank.MainActivity;
 import com.revature.bank.users.AppUser;
 import com.revature.bank.users.UserDao;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class RegisterScreen extends Menu {
@@ -12,7 +13,7 @@ public class RegisterScreen extends Menu {
     @Override
     public boolean display() {
         AppUser user = new AppUser();
-        System.out.println(logo + "\nNew User Registration: ");
+        System.out.println("\n\n" + logo + "\nNew User Registration: ");
 
         System.out.print("Username: \t");
         user.setUsername(MainActivity.scan.nextLine());
@@ -31,7 +32,7 @@ public class RegisterScreen extends Menu {
         System.out.print("Sex: \t");
 
         user.setSex(MainActivity.scan.nextLine());
-        user.setClientSince(LocalDate.now().toString());
+        user.setClientSince(Date.valueOf(LocalDate.now()));
         user.setClientActive(true);
 
         UserDao.getInstance().register(user);
