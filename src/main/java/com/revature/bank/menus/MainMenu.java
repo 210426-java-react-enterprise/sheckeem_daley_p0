@@ -1,7 +1,7 @@
 package com.revature.bank.menus;
 
 import com.revature.bank.MainActivity;
-import com.revature.bank.users.UserDao;
+import com.revature.bank.connections.daos.UserDao;
 
 public class MainMenu extends Menu {
     String route = "/main";

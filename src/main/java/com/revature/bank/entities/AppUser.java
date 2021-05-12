@@ -1,6 +1,4 @@
-package com.revature.bank.users;
-
-import com.revature.bank.utils.ConnectionFactory;
+package com.revature.bank.entities;
 
 import java.sql.*;
 

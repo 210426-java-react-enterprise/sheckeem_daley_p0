@@ -1,6 +1,7 @@
-package com.revature.bank.users;
+package com.revature.bank.connections.daos;
 
-import com.revature.bank.utils.ConnectionFactory;
+import com.revature.bank.entities.AppUser;
+import com.revature.bank.connections.ConnectionFactory;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ public class UserDao {
     private boolean correctLogin;
     private AppUser user = null;
 
-    public AppUser findUser(String username, String password) {
+    public AppUser find(String username, String password) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "select * from p0.clients where username = ? and password = ?";
@@ -24,7 +25,7 @@ public class UserDao {
                 user.setId(rs.getInt("client_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
-                user.setId(rs.getInt("ssn"));
+                user.setSsn(rs.getInt("ssn"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setEmail(rs.getString("email"));

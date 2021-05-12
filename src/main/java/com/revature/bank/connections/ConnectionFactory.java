@@ -1,4 +1,4 @@
-package com.revature.bank.utils;
+package com.revature.bank.connections;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +10,6 @@ import java.util.Properties;
 // @Author Wezley Singleton
 
 public class ConnectionFactory {
-
     private static ConnectionFactory connectionFactory;
     private Properties props = new Properties();
 

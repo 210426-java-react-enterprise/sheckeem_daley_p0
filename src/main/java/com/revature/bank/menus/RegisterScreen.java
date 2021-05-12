@@ -1,8 +1,8 @@
 package com.revature.bank.menus;
 
 import com.revature.bank.MainActivity;
-import com.revature.bank.users.AppUser;
-import com.revature.bank.users.UserDao;
+import com.revature.bank.entities.AppUser;
+import com.revature.bank.connections.daos.UserDao;
 
 import java.sql.Date;
 import java.time.LocalDate;
