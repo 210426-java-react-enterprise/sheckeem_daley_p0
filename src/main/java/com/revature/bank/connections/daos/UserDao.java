@@ -1,5 +1,6 @@
 package com.revature.bank.connections.daos;
 
+import com.revature.bank.entities.Accounts;
 import com.revature.bank.entities.AppUser;
 import com.revature.bank.connections.ConnectionFactory;
 
@@ -9,7 +10,12 @@ import java.time.LocalDate;
 public class UserDao {
     private static UserDao userDao;
     private boolean correctLogin;
+
     private AppUser user = null;
+
+    public AppUser getUser() {
+        return user;
+    }
 
     public AppUser find(String username, String password) {
 

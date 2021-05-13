@@ -1,11 +1,14 @@
 package com.revature.bank.menus;
 
 public abstract class Menu {
-    char input;
-
+    String screenAddress;
+    String input;
     String logo = "+-----------+        --        +\n| Bank Bank | a family company |\n+-----------+        --        +\n";
+    String menuOptions = null;
+    public String display() {
+        System.out.println("\n" + logo + menuOptions);
+        return screenAddress;
+    }
 
-    protected abstract boolean display();
-
-    protected abstract String getRoute();
+    public abstract String getRoute();
 }

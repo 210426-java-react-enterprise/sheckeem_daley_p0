@@ -12,7 +12,7 @@ public class RegisterScreen extends Menu {
     AppUser user;
 
     @Override
-    public boolean display() {
+    public String display() {
         UserDao.getInstance().clearCredentials();
         user = new AppUser();
         System.out.println("\n" + logo + "New User Registration: ");
@@ -37,12 +37,13 @@ public class RegisterScreen extends Menu {
         user.setClientActive(true);
 
         UserDao.getInstance().register(user);
+        screenAddress = "/main";
 
-        return true;
+        return screenAddress;
     }
 
     @Override
-    protected String getRoute() {
+    public String getRoute() {
         return route;
     }
 }

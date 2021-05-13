@@ -5,37 +5,38 @@ import com.revature.bank.connections.daos.UserDao;
 
 public class StartMenu extends Menu {
     String route = "/start";
+    String menuOptions = "What would you like to do today?\n" +
+            "A. Register a New User\n" +
+            "B. Login to an Existing User\n" +
+            "X. Exit Application\n\n" +
+            "Please Select an Option: ";
 
     @Override
-    public boolean display() {
+    public String display() {
+        String screenAddress = route;
 
-        System.out.print("\n" + logo + "What would you like to do today?\n" +
-                "A. Register a New User\n" +
-                "B. Login to an Existing User\n" +
-                "X. Exit Application\n\n" +
-                "Please Select an Option: ");
+        System.out.print("\n" + logo + menuOptions);
         String tempInput;
         do {
             tempInput = MainActivity.scan.nextLine();
         } while (tempInput == null || tempInput.trim() == null || tempInput.isEmpty());
 
-        input = tempInput.toUpperCase().charAt(0);
+        input = tempInput.toUpperCase();
 
         switch (input) {
-            case 'A':
+            case "A":
                 ScreenRouter.getInstance().navigate("/register");
                 break;
-            case 'B':
+            case "B":
                 ScreenRouter.getInstance().navigate("/login");
                 break;
-            case 'X':
+            case "X":
             default:
                 System.out.println("Logging out!");
-                MainActivity.setAppRunning(false);
                 UserDao.getInstance().clearCredentials();
-                return false;
+                return "/start";
         }
-        return true;
+        return screenAddress;
     }
 
     @Override

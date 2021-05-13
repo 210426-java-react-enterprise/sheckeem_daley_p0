@@ -5,21 +5,12 @@ import com.revature.bank.utils.GenericArrayList;
 public class ScreenRouter {
     private GenericArrayList<Menu> screens = new GenericArrayList<Menu>(1);
     private static ScreenRouter screenRouter;
-
-    /*
-        private StartMenu startMenu = new StartMenu();
-        private RegisterScreen registerScreen = new RegisterScreen();
-        private LoginScreen loginScreen = new LoginScreen();
-        private MainMenu mainMenu = new MainMenu();
-        private WithdrawMenu withdrawMenu = new WithdrawMenu();
-        private DepositMenu depositMenu = new DepositMenu();
-        private TransferMenu transferMenu = new TransferMenu();
-        private AccountsMenu accountsMenu = new AccountsMenu();
-        private TransactionsMenu transactionsMenu = new TransactionsMenu();
-         */
+    private Menu currentScreen;
+    private String screenAddress;
 
     public static ScreenRouter getInstance() {
         if (screenRouter == null) screenRouter = new ScreenRouter();
+        screenRouter.addAllScreens();
         return screenRouter;
     }
     public void addScreen(Menu menu) {
@@ -44,30 +35,32 @@ public class ScreenRouter {
         addScreen(new TransferMenu());
         addScreen(new AccountsMenu());
         addScreen(new TransactionsMenu());
+        addScreen(new StartMenu());
 
         return true;
     }
-    /*
-    public static boolean addAllScreens() {
-        ScreenRouter.addScreen(new StartMenu(), new RegisterScreen(), new LoginScreen(), new MainMenu(),
-                new WithdrawMenu(), new DepositMenu(), new TransferMenu(), new AccountsMenu(), new TransactionsMenu());
-        return true;
-    }
-     */
 
-    public boolean navigate(String route) {
+    public String navigate(String route) {
         /*
         Routing options:
         /start  /register   /login  /main   /withdraw   /deposit    /transfer   /accounts   /transactions
          */
-        boolean isActive = true;
+        Boolean loop = true;
+        int i =0;
+        do {
+            currentScreen = screens.get(i);
+            screenAddress = currentScreen.getRoute();
+            if (currentScreen != null && screenAddress.equals(route)) {
+                loop = false;
+                currentScreen.display();
+            } else if (currentScreen != null) {
+                i++;
+            } else i = 0;
+        } while (loop);
+        return screenAddress;
+    }
 
-        for (int i = 0; i < screens.getSize()-1; i++) {
-            Menu currentScreen = (Menu) screens.get(i);
-            if (currentScreen.getRoute().equals(route)) {
-                isActive = currentScreen.display();
-            }
-        }
-        return isActive;
+    public Menu getCurrentScreen(){
+        return currentScreen;
     }
 }

@@ -11,6 +11,35 @@ public class Transactions {
     private Date date;
     private boolean notFlagged;
 
+    //GETTERS
+    public int getId() {
+        return id;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public boolean isNotFlagged() {
+        return notFlagged;
+    }
+
     //SETTERS
     public void setId(int id) {
         this.id = id;
@@ -40,32 +69,4 @@ public class Transactions {
         this.notFlagged = notFlagged;
     }
 
-    //GETTERS
-    public int getId() {
-        return id;
-    }
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public boolean isNotFlagged() {
-        return notFlagged;
-    }
 }

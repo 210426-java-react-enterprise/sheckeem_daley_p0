@@ -4,13 +4,13 @@ public class TransactionsMenu extends Menu {
     String route = "/transactions";
 
     @Override
-    protected boolean display() {
+    public String display() {
         System.out.println("\n" + logo + "Transactions Menu: ");
-        return true;
+        return screenAddress;
     }
 
     @Override
-    protected String getRoute() {
+    public String getRoute() {
         return route;
     }
 }

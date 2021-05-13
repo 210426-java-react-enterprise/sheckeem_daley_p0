@@ -1,13 +1,14 @@
 package com.revature.bank.connections;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-// @Author Wezley Singleton
+// @Author Wezley Singleton (mostly)
 
 public class ConnectionFactory {
     private static ConnectionFactory connectionFactory;
@@ -23,7 +24,8 @@ public class ConnectionFactory {
 
     private ConnectionFactory() {
         try {
-            props.load(new FileReader("src/main/resources/application.properties"));
+            URL url = Paths.get("src/main/resources/application.properties").toUri().toURL();
+            props.load(url.openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

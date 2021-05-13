@@ -1,5 +1,6 @@
 package com.revature.bank.connections.daos;
 
+import com.revature.bank.entities.Accounts;
 import com.revature.bank.entities.Transactions;
 import com.revature.bank.entities.AppUser;
 import com.revature.bank.connections.ConnectionFactory;
@@ -8,15 +9,15 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class TransactionDao {
+    private static TransactionDao transDao;
     private Transactions transaction = null;
 
-    public Transactions find(AppUser user) {
+    public Transactions find(Accounts account) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "select * from p0.accounts where fk_account_id = ?" +
-                    "";
+            String sql = "select * from p0.transactions where fk_account_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getUsername());
+            pstmt.setInt(1, account.getId());
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -24,7 +25,7 @@ public class TransactionDao {
                 transaction.setId(rs.getInt("trans_id"));
                 transaction.setAccountId(rs.getInt("fk_account_id"));
                 transaction.setTypeId(rs.getInt("fk_trans_type_id"));
-                transaction.setAmount(rs.getFloat("amount"));
+                transaction.setAmount((double) rs.getFloat("amount"));
                 transaction.setDate(rs.getDate("trans_date"));
                 transaction.setNotFlagged(rs.getBoolean("flagged_status"));
             }
@@ -36,20 +37,15 @@ public class TransactionDao {
 
     public AppUser make(AppUser user) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "insert into p0.clients (username, password, ssn, " +
-                    "first_name, last_name, email, phone, sex, client_since, client_active) " +
-                    "values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+            String sql = "insert into p0.transactions (fk_account_id, fk_trans_type_id, " +
+                    "amount, trans_date, flagged_status) " +
+                    "values ( ?, ?, ?, ?, ? )";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setInt(3, user.getSsn());
-            pstmt.setString(4, user.getFirstName());
-            pstmt.setString(5, user.getLastName());
-            pstmt.setString(6, user.getEmail());
-            pstmt.setString(7, user.getPhone());
-            pstmt.setString(8, user.getSex());
-            pstmt.setDate(9, Date.valueOf(LocalDate.now()));
-            pstmt.setBoolean(10, user.isClientActive());
+            pstmt.setInt(1, transaction.getAccountId());
+            pstmt.setInt(2, transaction.getTypeId());
+            pstmt.setFloat(3, (float) transaction.getAmount());
+            pstmt.setDate(4, (Date) transaction.getDate());
+            pstmt.setBoolean(5, transaction.isNotFlagged());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -57,5 +53,14 @@ public class TransactionDao {
         }
 
         return user;
+    }
+
+    public Transactions getTransaction() {
+        return transaction;
+    }
+
+    public static TransactionDao getInstance() {
+        if (transDao == null) transDao = new TransactionDao();
+        return transDao;
     }
 }

@@ -1,7 +1,6 @@
 package com.revature.bank.utils;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class GenericArrayList<I> {
     private int size = 0;
@@ -69,15 +68,28 @@ public class GenericArrayList<I> {
     //public I[] toArray() {}
 
     public I get(int index) {
-        //stub
+        /*
         if (index >= size) {
             System.out.println("Array index is out of bounds! " +
                     "Returned item at largest index instead.");
             return items[size - 1];
         } else
             return items[index];
+        */
+        return (I) Array.get(items, index);
     }
+    public I[] trim() {
+        for (int i = 0; i < size - 1; i++) {
+            if (i >= size - 2) break;
+            else if (items[i + 1] == null){
+                size--;
+            }
+        }
 
+
+        items = (I[]) Array.get(items, 0);
+        return items;
+    }
     public I pop(int index) {
         I popped = get(index);
         remove(index);

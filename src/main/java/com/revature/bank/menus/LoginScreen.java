@@ -7,15 +7,17 @@ import com.revature.bank.connections.daos.UserDao;
 
 public class LoginScreen extends Menu {
     String route = "/login";
+    String menuOptions = "Log In to Your Accounts: ";
+
     String username;
     String password;
     boolean correct = false;
 
     @Override
-    public boolean display() {
+    public String display() {
         AppUser user = new AppUser();
         while (correct == false) {
-            System.out.println("\n" + logo + "Log In to Your Accounts: ");
+            System.out.println("\n" + logo + menuOptions);
             System.out.print("Please enter your username: ");
             username = MainActivity.scan.nextLine();
             System.out.print("Please enter your password: ");
@@ -31,7 +33,7 @@ public class LoginScreen extends Menu {
                 correct = false;
             }
         }
-        return correct;
+        return screenAddress;
     }
 
     public boolean login() {
@@ -39,7 +41,7 @@ public class LoginScreen extends Menu {
     }
 
     @Override
-    protected String getRoute() {
+    public String getRoute() {
         return route;
     }
 }

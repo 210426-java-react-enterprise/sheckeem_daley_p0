@@ -4,14 +4,13 @@ public class TransferMenu extends Menu {
     String route = "/transfer";
 
     @Override
-    public boolean display() {
+    public String display() {
         System.out.println("\n" + logo + "Transfer Money: ");
-
-        return true;
+        return screenAddress;
     }
 
     @Override
-    protected String getRoute() {
+    public String getRoute() {
         return route;
     }
 }

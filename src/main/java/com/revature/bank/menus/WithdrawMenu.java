@@ -4,12 +4,13 @@ public class WithdrawMenu extends Menu {
     String route = "/withdraw";
 
     @Override
-    public boolean display() {
-        System.out.println("\n" + logo+ "Withdrawal Menu: ");return true;
+    public String display() {
+        System.out.println("\n" + logo+ "Withdrawal Menu: ");
+        return screenAddress;
     }
 
     @Override
-    protected String getRoute() {
+    public String getRoute() {
         return route;
     }
 }
