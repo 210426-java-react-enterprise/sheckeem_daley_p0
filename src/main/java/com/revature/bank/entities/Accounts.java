@@ -45,7 +45,6 @@ public class Accounts {
         System.out.printf("You've just added +$%.2f to your account." +
                 "Your new balance is $%.2f", amount, currentBalance);
         AccountDao.getInstance().findAcountFromDb(UserDao.getInstance().getUser());
-        TransactionDao.getInstance().make(UserDao.getInstance().getUser());
         return currentBalance;
     }
 

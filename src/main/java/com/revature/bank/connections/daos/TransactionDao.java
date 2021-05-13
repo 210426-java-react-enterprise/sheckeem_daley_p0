@@ -41,6 +41,8 @@ public class TransactionDao {
                     "amount, trans_date, flagged_status) " +
                     "values ( ?, ?, ?, ?, ? )";
             PreparedStatement pstmt = conn.prepareStatement(sql);
+            if (AccountDao.getInstance().findAcountFromDb(user) == null) AccountDao.getInstance().createAccount(user);
+            AccountDao.getInstance().findAcountFromDb(user);
             pstmt.setInt(1, transaction.getAccountId());
             pstmt.setInt(2, transaction.getTypeId());
             pstmt.setFloat(3, (float) transaction.getAmount());
