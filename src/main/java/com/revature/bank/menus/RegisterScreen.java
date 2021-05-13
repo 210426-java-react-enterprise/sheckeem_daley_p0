@@ -32,13 +32,15 @@ public class RegisterScreen extends Menu {
         user.setPhone(MainActivity.scan.nextLine());
         System.out.print("Sex: \t");
 
+        screenAddress = "/main";
+
         user.setSex(MainActivity.scan.nextLine());
         user.setClientSince(Date.valueOf(LocalDate.now()));
         user.setClientActive(true);
 
         UserDao.getInstance().register(user);
-        screenAddress = "/main";
 
+        ScreenRouter.getInstance().navigate("/main");
         return screenAddress;
     }
 
