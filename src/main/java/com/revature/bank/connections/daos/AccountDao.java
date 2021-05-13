@@ -36,19 +36,13 @@ public class AccountDao {
                     "values ( ?, ?, ?, ?, ?, ?, ? )";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, user.getId());
-            pstmt.setInt(1, account.getType());
-            pstmt.setFloat(2, (float) account.getCurrentBalance());
-            pstmt.setFloat(3, (float) ());
-            pstmt.setDate(4, (Date) transaction.getDate());
-            pstmt.setBoolean(5, transaction.isNotFlagged());
+            pstmt.setInt(2, account.getType());
+            pstmt.setFloat(3, (float) account.getCurrentBalance());
+            pstmt.setBoolean(4,true);
+            pstmt.setBoolean(5, false);
+            pstmt.setBoolean(5, false);
 
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                account = new Accounts();
-                account.getId(pstmt.setInt("account_id"));
-                account.setCurrentBalance((double) rs.getFloat("balance"));
-                account.setType(rs.getInt("account_type_id"));
-            }
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -10,7 +10,7 @@ public class Accounts {
     private int id;
     private int clientId;
     private Double currentBalance = 0.0;
-    private String type;
+    private int type;
     private boolean isActive = true;
     private boolean isLocked = false;
     private boolean isAdminLocked = false;
@@ -95,12 +95,8 @@ public class Accounts {
         this.currentBalance = currentBalance;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setType(int typeId) {
-        this.type = "" + typeId;
+        this.type = typeId;
     }
 
     public void setActive(boolean active) {
